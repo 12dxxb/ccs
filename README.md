@@ -75,35 +75,3 @@ Claude Code 启动
 ## 修改规则
 
 直接编辑 `rules/` 下对应文件，**新对话后生效**（已打开的对话不会重新加载）。
-
----
-
-## 项目级配置
-
-在项目根目录创建 `CLAUDE.md`，只写项目特有规则，全局规则自动生效无需重复引用。
-
-**双工具项目（同时使用 Claude + Codex）推荐结构：**
-
-```
-project/
-├── CLAUDE.md              # 左脑入口：@.project/shared.md @.project/left-brain.md
-├── AGENTS.md              # 右脑入口：完整内容（Codex 不支持 @ 引用）
-└── .project/
-    ├── shared.md          # 唯一来源：全局共享规则 + 双脑选择指南
-    ├── left-brain.md      # Claude 专属：分析/审查/架构
-    └── right-brain.md     # Codex 专属：生成/实现/执行
-```
-
-**单工具项目（仅 Claude）：**
-
-```markdown
-# 项目 CLAUDE.md 示例
-
-## 技术栈
-- Go 1.22 + Gin
-- PostgreSQL 16
-
-## 项目特定规则
-- API 响应统一用 pkg/response 包
-- 数据库操作必须在 service 层，不能在 handler 直接查询
-```
